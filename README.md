@@ -1,14 +1,24 @@
-#Final Project - Title //TODO
+#Final Project - Stacky Bloxs //TODO
 Detailed Description (Add pictures/videos by Demo day) //todo
+An improvement on stacker (http://i.imgur.com/8vllfSL.png)
 
 ##Due 04/08:
 Prepare This Readme. 
 //TODO
 
 * Decide on the Idea.
+	Inspired by Tetris, Stacker, and Mario Kart.<br>
+	Tetris: falling blocks, clear blocks, get points<br>
+	Stacker: if you miss lining up blocks with previous blocks, you lose<br>
+	Mario Kart: ? rainbow item box<br>
+	
+	Stack the blocks and get the high score!
 * Decide on the target platform(Mac/Android/IOS,etc).
+	Android
 * Discuss weekly scrum meeting times outside of class times. Can be remote meetings, but in-person meetings are highly recommended.
+	Saturdays 12-2pm on campus.
 * Decide who is going to be the manager for the Git Repo. 
+	Stevie
 * Write out the various milestones below in the following format "Requirement - person responsible."
 * Example: "Prepare health manager and mechanism for all relevant players to have a health component - Omar" 
 * Make sure you discuss the idea and milestones with me on the first day, or anytime you decide to pivot your project.
@@ -25,37 +35,54 @@ Prepare This Readme.
 
 
 ##Due 04/15:
-//TODO
+* Setup the base game scene (i.e. place the cloud player object and boundaries, game manager?), Draw Items- Yuning
+* Create onClick Script -Stevie
+* Create Cloud Script -Jimmy
+
 ###Scrum meeting notes:
 //TODO
 
 ---
 ##Due 04/22:
 //TODO
+* Create Block Interaction -Stevie
+* Create Block prefab - Yuning
+* Create basic Block Script (Color) - Jimmy
+* start lose case -everyone
 ###Scrum meeting notes:
 //TODO
 
 ---
 ##Due 04/29:
 //TODO
+* Calculate Score - Yuning
+* Create Lose Screen - Stevie
+* Save Highest Score -Jimmy
+* continue lose cases - everyone
 ###Scrum meeting notes:
 //TODO
 
 ---
 ##Due 05/06:
 //TODO
+* main screen animations - Stevie
+* implement sounds - Yuning
+* cloud animations (on lose) - Stevie
+* block animations - Jimmy
 ###Scrum meeting notes:
 //TODO
 
 ---
 ##Due 05/13:
 //TODO
+* Create Special blocks (score multiplier, clear blocks, cloud slow down) -everyone
+* Fix Bugs, testing - everyone
 ###Scrum meeting notes:
 //TODO
 
 ---
 ##Due 05/20:DEMO DAY
-//TODO
+* Fix bugs, testing - everyone
 ###Scrum meeting notes:
 //TODO
 
