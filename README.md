@@ -40,7 +40,10 @@ Prepare This Readme.
 * Create Cloud Script -Jimmy
 
 ###Scrum meeting notes:
+ - implemented tasks above
+ - needs testing on android, change in player character, bug with fixed update and speed
 //TODO
+-tasks assigned for next week
 
 ---
 ##Due 04/22:
