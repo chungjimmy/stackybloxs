@@ -44,6 +44,7 @@ Prepare This Readme.
  - needs testing on android, change in player character, bug with fixed update and speed
 //TODO
 -tasks assigned for next week
+-set speed cap, change speed incremenet based on time
 
 ---
 ##Due 04/22:
