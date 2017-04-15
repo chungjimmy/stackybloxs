@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 
+/// </summary>
 public class PlayerAction : MonoBehaviour {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public GameObject block;
 
 	// Use this for initialization
@@ -12,6 +16,10 @@ public class PlayerAction : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+        /// <summary>
+        /// 
+        /// </summary>
 	void Update () {
         //if the user is touching the screen with any # of fingers
         if (Input.touchCount > 0)

@@ -2,33 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
-	Rigidbody2D rb;
-	float speed;
-	float counter;
+    public float speed;
+    private float counter;
+    public GameObject rightBound;
+    public GameObject leftBound;
+    bool moveRight;
+    bool moveLeft;
 
-	// Use this for initialization
-	void Start () {
-		rb = GetComponent<Rigidbody2D> ();
-		counter = 1;
-                speed = 1;
-		Vector2 move = new Vector2 (speed*1, 0);
-		rb.velocity = (move);
-	}
+    // Use this for initialization
+    void Start()
+    {
+        speed = 1.0f;
+    }
 
-	// Update is called once per frame
-	void FixedUpdate () {
-		Vector2 move = new Vector2 (speed*1, 0);
-		rb.velocity = (move);
-	}
-	void OnCollisionEnter2D(){
-		counter++;
-		if (counter % 5 == 0) {
-			speed = speed * -1.5f;
-		} else {
-			speed = -speed;
-		}
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.x >= rightBound.transform.position.x)
+        {
+            speed = -speed;
+        }
+        else if (transform.position.x <= leftBound.transform.position.x)
+        {
+            speed = -speed;
+        }
 
-	}
+        transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+
+
+    }
+
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag == "Bound")
+    //    {
+    //        counter++;
+    //        if (counter % 5 == 0)
+    //        {
+    //            speed *= 1.5f;
+    //        }
+    //        else {
+    //            moveRight = !moveRight;
+    //        }
+    //    }
+    //}
 }
