@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 17b28c49738d3984ab5498abba84ec37
+timeCreated: 1492501682
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - blueBlock: {fileID: 21300000, guid: b77bfa04346d3c74b877ec4670833399, type: 3}
+  - greenBlock: {fileID: 21300000, guid: a1035b9c8f4065c44a74a6c4328be5ea, type: 3}
+  - orangeBlock: {fileID: 21300000, guid: 5ab2e2af8fa5a7641afaa3fab9afb45c, type: 3}
+  - purpleBlock: {fileID: 21300000, guid: 78fa66f660296c544b0b11db52ae2f6a, type: 3}
+  - redBlock: {fileID: 21300000, guid: f12de30bd6e39ac46a67fddf6e8001b9, type: 3}
+  - yellowBlock: {fileID: 21300000, guid: 166a6b489fd27d949a7ebe7218362a15, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
