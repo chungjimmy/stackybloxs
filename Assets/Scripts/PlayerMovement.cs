@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         InvokeRepeating("increaseSpeed", 10f, 10f);
+        //speed = 1.0f;
+	//counter = 1;
     }
 
     // Update is called once per frame
@@ -51,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.x >= rightBound.transform.position.x)
         {
             speed = -absoluteSpeed;
+			//if (Time.time > counter* 5 && (speed <30 || speed >-30 )) {
+			//	speed += 1.0f;
+			//	counter++;
+			//}
+			//speed = -speed;
         }
         else if (transform.position.x <= leftBound.transform.position.x)
         {
