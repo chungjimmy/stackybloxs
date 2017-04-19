@@ -34,11 +34,6 @@ public class PlayerAction : MonoBehaviour {
 	void Update () {
         if (nextFire <= Time.time)
         {
-            if (Input.touchCount > 0)
-            {
-                createBlock();
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
                 createBlock();
