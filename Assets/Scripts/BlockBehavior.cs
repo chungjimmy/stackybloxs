@@ -61,33 +61,37 @@ public class BlockBehavior : MonoBehaviour {
     /// else the blocks will stack
     /// </summary>
 	void Update () {
-        foreach(GameObject block in blocks)
+        try
         {
-            if (collider.IsTouching(block.GetComponent<BoxCollider2D>()))
+            foreach (GameObject block in blocks)
             {
+                if (collider.IsTouching(block.GetComponent<BoxCollider2D>()))
+                {
 
-                float distance = calculateDistance(block);
+                    float distance = calculateDistance(block);
 
-                if(distance <= perfect_distance)
-                {
-                    Debug.Log("Perfect " + distance);
-                    this.gameObject.SetActive(false);
-                    block.gameObject.SetActive(false);
-                }
-                else if(distance <= great_distance)
-                {
-                    Debug.Log("Great " + distance);
-                    this.gameObject.SetActive(false);
-                    block.gameObject.SetActive(false);
-                }
-                else if (distance <= ok_distance)
-                {
-                    Debug.Log("OK " + distance);
-                    this.gameObject.SetActive(false);
-                    block.gameObject.SetActive(false);
+                    if (distance <= perfect_distance)
+                    {
+                        Debug.Log("Perfect " + distance);
+                        this.gameObject.SetActive(false);
+                        block.gameObject.SetActive(false);
+                    }
+                    else if (distance <= great_distance)
+                    {
+                        Debug.Log("Great " + distance);
+                        this.gameObject.SetActive(false);
+                        block.gameObject.SetActive(false);
+                    }
+                    else if (distance <= ok_distance)
+                    {
+                        Debug.Log("OK " + distance);
+                        this.gameObject.SetActive(false);
+                        block.gameObject.SetActive(false);
+                    }
                 }
             }
         }
+        catch { }
 	}
 
     /// <summary>
