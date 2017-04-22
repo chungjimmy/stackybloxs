@@ -54,7 +54,21 @@ Prepare This Readme.
 * Create basic Block Script (Color) - Jimmy
 * start lose case -everyone
 ###Scrum meeting notes:
+-adjusted speed based on time
+-added score
+-created max block height
+-add block color and behavior
 //TODO
+-game still needs:
+-combo multiplier
+-items
+-google play leader board
+-initial platform
+-delay when creating new block, delay player movement
+-fix block behavior so only one on top of a block
+-animations
+-change speed based on blocks dropped
+-tutioral?
 
 ---
 ##Due 04/29:
