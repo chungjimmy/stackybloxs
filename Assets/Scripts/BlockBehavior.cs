@@ -40,8 +40,10 @@ public class BlockBehavior : MonoBehaviour {
     {
         if(other.gameObject.name == "Bottom")
         {
+            Combo.resetCombo();
             Destroy(this.gameObject);
-          //  this.gameObject.SetActive(false);
+            Debug.Log(Combo.combo);
+            //  this.gameObject.SetActive(false);
         }
     }
 
@@ -75,27 +77,28 @@ public class BlockBehavior : MonoBehaviour {
                     if (distance <= perfect_distance)
                     {
                         Debug.Log("Perfect " + distance);
-                        ///this.gameObject.SetActive(false);
-                        //block.gameObject.SetActive(false);
-                        CurrentScore.currentScore += 2;
+                        Combo.combo++;
+                        CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
-                        
-                        
+                        Debug.Log(Combo.combo);
+
                     }
                     else if (distance <= great_distance)
                     {
                         Debug.Log("Great " + distance);
-                        // this.gameObject.SetActive(false);
-                        //block.gameObject.SetActive(false);
-                        CurrentScore.currentScore++;
+                        Combo.combo++;
+                        CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
-                        
+                        Debug.Log(Combo.combo);
+
                     }
                     else if (distance <= ok_distance)
                     {
                         Debug.Log("OK " + distance);
+                        Combo.resetCombo();
+                        Debug.Log(Combo.combo);
                     }
                 }
             }

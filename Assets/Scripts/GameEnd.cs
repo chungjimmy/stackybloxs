@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameEnd : MonoBehaviour {
+    public GameObject highScoreText;
     /// <summary>
     /// player gameobject, use to disable player when game is over
     /// </summary>
@@ -74,6 +75,10 @@ public class GameEnd : MonoBehaviour {
                 if (exit == false && scoreTracker == CurrentScore.currentScore) {
                     player.SetActive(false);
                     gameOver.SetActive(true);
+
+                    highScoreText.SetActive(true);
+                    SaveFile.saveScore.Save();
+                    SaveFile.saveScore.load();
                 }
                 delay = 1f;
                 enter = false;
