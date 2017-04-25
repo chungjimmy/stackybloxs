@@ -20,17 +20,17 @@ public class BlockBehavior : MonoBehaviour {
 	/// <summary>
 	/// the distance (between two blocks) required for the player to achieve a 'perfect'
 	/// </summary>
-	public float perfect_distance = 1f;
+	public float perfect_distance = .1f;
 
 	/// <summary>
 	/// the distance (between two blocks) required for the player to achieve a 'great'
 	/// </summary>
-	public float great_distance = 1.05f;
+	public float great_distance = .3f;
 
 	/// <summary>
 	/// the distance (between two blocks) required for the player to achieve an 'ok'
 	/// </summary>
-	public float ok_distance = 1.1f;
+	public float ok_distance = .5f;
 
     /// <summary>
     /// hide the block when it falls off the bottom
@@ -109,14 +109,13 @@ public class BlockBehavior : MonoBehaviour {
 
 	/// <summary>
 	/// calculates the distance between this game object's position and block's position
-	/// using the pythagorean theorem
+	/// using the x dist of the object's position 
 	/// </summary>
 	/// <param name="block">the other game object</param>
 	/// <returns>distance between this game object and block</returns>
 	private float calculateDistance(GameObject block)
 	{
 		float x_dist = Mathf.Abs(transform.position.x - block.gameObject.transform.position.x);
-		float y_dist = Mathf.Abs(transform.position.y - block.gameObject.transform.position.y);
-		return Mathf.Sqrt(Mathf.Pow(x_dist, 2) + Mathf.Pow(y_dist, 2));
+		return x_dist;
 	}
 }
