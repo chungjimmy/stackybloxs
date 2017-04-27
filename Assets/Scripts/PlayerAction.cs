@@ -24,18 +24,21 @@ public class PlayerAction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
     /// <summary>
     /// create a block by tapping, only after the cooldown time has passed
+    /// increment speed and stop the player for 0.5s after tapping
     /// </summary>
 	void Update () {
         if (nextFire <= Time.time)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                GetComponent<PlayerMovement>().increaseSpeed();
+                StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
                 createBlock();
             }
         }

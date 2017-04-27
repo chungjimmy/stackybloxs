@@ -23,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 20f;
 
     /// <summary>
+    /// used to stop the player from moving after tapping
+    /// </summary>
+    private bool isStopped = false;
+
+    /// <summary>
     /// the right border of the game screen
     /// </summary>
     public GameObject rightBound;
@@ -38,9 +43,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Start()
     {
-        InvokeRepeating("increaseSpeed", 10f, 10f);
-        //speed = 1.0f;
-	//counter = 1;
+        
     }
 
     // Update is called once per frame
@@ -53,29 +56,39 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.x >= rightBound.transform.position.x)
         {
             speed = -absoluteSpeed;
-			//if (Time.time > counter* 5 && (speed <30 || speed >-30 )) {
-			//	speed += 1.0f;
-			//	counter++;
-			//}
-			//speed = -speed;
         }
         else if (transform.position.x <= leftBound.transform.position.x)
         {
             speed = absoluteSpeed;
         }
 
-        transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+        if (!isStopped)
+        {
+            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+        }
     }
 
     /// <summary>
     /// increases the magnitude of the speed by 1 unit if it
     /// is less than or equal to the maximum speed
     /// </summary>
-    private void increaseSpeed()
+    public void increaseSpeed()
     {
         if (speed <= maxSpeed)
         {
-            absoluteSpeed += 1f;
+            absoluteSpeed += 0.5f;
         }
+    }
+
+    /// <summary>
+    /// stop player movement for s seconds
+    /// </summary>
+    /// <param name="s">time in seconds</param>
+    /// <returns></returns>
+    public IEnumerator stopPlayer(float s)
+    {
+        isStopped = true;
+        yield return new WaitForSeconds(s);
+        isStopped = false;
     }
 }
