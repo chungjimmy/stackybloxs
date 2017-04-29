@@ -22,9 +22,14 @@ public class PlayerAction : MonoBehaviour {
     /// </summary>
     private float nextFire = 0f;
 
+	private Vector3 blockPos;
+
+//	private SpriteRenderer renderer;
+
+//	public Sprite cloudPlayerDrop;
 	// Use this for initialization
 	void Start () {
-
+//		renderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -37,8 +42,10 @@ public class PlayerAction : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
+				
                 GetComponent<PlayerMovement>().increaseSpeed();
                 StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
+//				renderer.sprite = cloudPlayerDrop;
                 createBlock();
             }
         }
@@ -50,7 +57,8 @@ public class PlayerAction : MonoBehaviour {
     /// </summary>
     private void createBlock()
     {
-        Instantiate(block, transform.position, Quaternion.identity);
+		blockPos = new Vector3(transform.position.x, transform.position.y - .63f, transform.position.z);
+		Instantiate(block, blockPos, Quaternion.identity);
         nextFire = Time.time + fireRate;
     }
 }

@@ -48,7 +48,7 @@ public class BlockColor : MonoBehaviour {
     /// </summary>
     void Start () {
         renderer = GetComponent<SpriteRenderer>();
-        randomizeColor();
+		randomizeColor(PlayerMovement.COLOR);
     }
 	
 	// Update is called once per frame
@@ -59,9 +59,10 @@ public class BlockColor : MonoBehaviour {
     /// <summary>
     /// sets the sprite to be a random colored block
     /// </summary>
-    private void randomizeColor()
+	private void randomizeColor(int colorNum)
     {
-        switch (Random.Range(0, 5))
+		
+        switch (colorNum)
         {
             case 0:
                 renderer.sprite = blueBlock;
