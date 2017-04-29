@@ -78,7 +78,19 @@ Prepare This Readme.
 * Save Highest Score -Jimmy
 * continue lose cases - everyone
 ###Scrum meeting notes:
+-changed speed calculations
+-added delay after click
+-added restart on game over
+-added combo multiplier
+-added cloud animation
 //TODO
+-display combo/landing
+-implement google leader board
+-add items
+-add platform
+-change event when block lands on side
+-animations for block clear
+-fix block behavior
 
 ---
 ##Due 05/06:
