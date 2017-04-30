@@ -32,6 +32,21 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public float ok_distance = .5f;
 
+	/// <summary>
+	/// Manager gameobject, use to access ManageCoroutines Script
+	/// </summary>
+	private GameObject manager;
+
+	/// <summary>
+	/// boolean to see if greatText need to be displayed, default false
+	/// </summary>
+	public static bool displayPerfect;
+
+	/// <summary>
+	/// boolean to see if greatText need to be displayed, default false
+	/// </summary>
+	public static bool displayGreat;
+
     /// <summary>
     /// hide the block when it falls off the bottom
     /// </summary>
@@ -43,7 +58,6 @@ public class BlockBehavior : MonoBehaviour {
             Combo.resetCombo();
             Destroy(this.gameObject);
             Debug.Log(Combo.combo);
-            //  this.gameObject.SetActive(false);
         }
     }
 
@@ -55,6 +69,7 @@ public class BlockBehavior : MonoBehaviour {
 	void Start () {
 		blocks = GameObject.FindGameObjectsWithTag("Block");
 		collider = GetComponent<BoxCollider2D>();
+		manager = GameObject.FindGameObjectWithTag("Manager");
 
 	}
 
@@ -75,30 +90,29 @@ public class BlockBehavior : MonoBehaviour {
 					float distance = calculateDistance(block);
 
                     if (distance <= perfect_distance)
-                    {
-                        Debug.Log("Perfect " + distance);
+                    {                        
+						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
+						displayPerfect = true;
+
                         Combo.combo++;
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
-                        Debug.Log(Combo.combo);
-
                     }
                     else if (distance <= great_distance)
-                    {
-                        Debug.Log("Great " + distance);
+                    {                        
+						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
+						Debug.Log("hhi");
+						displayGreat = true;
+
                         Combo.combo++;
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
-                        Debug.Log(Combo.combo);
-
                     }
                     else if (distance <= ok_distance)
                     {
-                        Debug.Log("OK " + distance);
                         Combo.resetCombo();
-                        Debug.Log(Combo.combo);
                     }
                 }
             }
