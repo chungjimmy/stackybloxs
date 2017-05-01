@@ -47,6 +47,8 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public static bool displayGreat;
 
+	public static bool displayCombo;
+
     /// <summary>
     /// hide the block when it falls off the bottom
     /// </summary>
@@ -57,7 +59,6 @@ public class BlockBehavior : MonoBehaviour {
         {
             Combo.resetCombo();
             Destroy(this.gameObject);
-            Debug.Log(Combo.combo);
         }
     }
 
@@ -94,7 +95,8 @@ public class BlockBehavior : MonoBehaviour {
 						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
 						displayPerfect = true;
 
-                        Combo.combo++;
+						Combo.combo++;
+						displayCombo = true;
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
@@ -102,10 +104,10 @@ public class BlockBehavior : MonoBehaviour {
                     else if (distance <= great_distance)
                     {                        
 						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
-						Debug.Log("hhi");
 						displayGreat = true;
 
-                        Combo.combo++;
+						Combo.combo++;
+						displayCombo = true;
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);

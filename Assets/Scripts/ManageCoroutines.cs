@@ -19,6 +19,11 @@ public class ManageCoroutines : MonoBehaviour {
 	private Transform blockPos;
 	// Use this for initialization
 
+	public GameObject comboText;
+
+	private GameObject combo;
+
+	private float delay = 0f;
 	/// <summary>
 	/// initialize blockPos
 	/// </summary>
@@ -31,12 +36,27 @@ public class ManageCoroutines : MonoBehaviour {
 	/// </summary>
 	void Update () {
 		if(BlockBehavior.displayPerfect){
-			StartCoroutine(DisplayPerfectText(.2f));
+			StartCoroutine(DisplayPerfectText(.3f));
 		}
 
 		if(BlockBehavior.displayGreat){
-			StartCoroutine(DisplayGreatText(.2f));
+			StartCoroutine(DisplayGreatText(.3f));
 		}
+
+		if(BlockBehavior.displayCombo){
+//			delay += Time.deltaTime;
+//			if((Combo.combo - 1) >= 0 && (Combo.combo - 1) <= 4)
+//			combo = comboText.transform.GetChild(Combo.combo-1).gameObject;
+//			Debug.Log(Combo.combo-1);
+//			combo.gameObject.SetActive(true);
+//			if(delay > .3f){
+//				combo.gameObject.SetActive(false);			
+//				BlockBehavior.displayCombo = false;
+//				delay = 0f;
+//			}
+			StartCoroutine(DisplayCombo(.3f));
+		}
+
 	}
 	/// <summary>
 	/// Display the perfect text.
@@ -63,8 +83,8 @@ public class ManageCoroutines : MonoBehaviour {
 		greatText.SetActive(true);
 		//Debug.Log(WaitForSeconds(s));
 		yield return new WaitForSeconds(s);
-		BlockBehavior.displayGreat = false;
 		greatText.SetActive(false);
+		BlockBehavior.displayGreat = false;
 	}
 	/// <summary>
 	/// Sets the block position.
@@ -72,5 +92,15 @@ public class ManageCoroutines : MonoBehaviour {
 	/// <param name="obj">Object.</param>
 	public void setBlockPos(Transform obj){
 		blockPos.position = obj.position;
+	}
+
+	public IEnumerator DisplayCombo(float s){
+		if((Combo.combo-1) >= 0 && (Combo.combo-1) <= 4){
+			combo = comboText.transform.GetChild(Combo.combo-1).gameObject;
+			combo.gameObject.SetActive(true);		
+			yield return new WaitForSeconds(s);
+			combo.gameObject.SetActive(false);			
+			BlockBehavior.displayCombo = false;
+		}
 	}
 }
