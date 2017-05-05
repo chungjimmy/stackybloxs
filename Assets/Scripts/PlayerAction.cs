@@ -42,11 +42,32 @@ public class PlayerAction : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
-				
-                GetComponent<PlayerMovement>().increaseSpeed();
-                StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
-//				renderer.sprite = cloudPlayerDrop;
-                createBlock();
+//				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//				RaycastHit2D hit;
+//				if(Physics2D.Raycast(ray, out hit)){
+//					if(hit.transform.name == "ItemBox"){
+//						Debug.Log("hi hi hi");
+//					}
+
+				RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+				if(hit.collider != null){
+					if(hit.transform.tag == "Item"){
+						ItemSpawner.ACTIVEITEM = true;
+					}
+					else{
+						GetComponent<PlayerMovement>().increaseSpeed();
+						StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
+						//				renderer.sprite = cloudPlayerDrop;
+						createBlock();
+					}
+				}
+				else{
+					GetComponent<PlayerMovement>().increaseSpeed();
+					StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
+					//				renderer.sprite = cloudPlayerDrop;
+					createBlock();
+				}
+
             }
         }
     }

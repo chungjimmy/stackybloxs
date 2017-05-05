@@ -42,6 +42,11 @@ public class BlockColor : MonoBehaviour {
     /// </summary>
     public Sprite yellowBlock;
 
+	/// <summary>
+	/// The color of the this block
+	/// </summary>
+	public int thisBlockColor;
+
     // Use this for initialization
     /// <summary>
     /// get sprite renderer component and set its sprite to a random colored block
@@ -66,21 +71,27 @@ public class BlockColor : MonoBehaviour {
         {
             case 0:
                 renderer.sprite = blueBlock;
+				thisBlockColor = 0;
                 break;
             case 1:
                 renderer.sprite = greenBlock;
+				thisBlockColor = 1;
                 break;
             case 2:
                 renderer.sprite = orangeBlock;
+				thisBlockColor = 2;
                 break;
             case 3:
                 renderer.sprite = purpleBlock;
+				thisBlockColor = 3;
                 break;
             case 4:
                 renderer.sprite = redBlock;
+				thisBlockColor = 4;
                 break;
-            default:
+			case 5:
                 renderer.sprite = yellowBlock;
+				thisBlockColor = 5;
                 break;
         }
     }

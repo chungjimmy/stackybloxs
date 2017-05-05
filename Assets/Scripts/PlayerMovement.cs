@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// the maximum speed the game object will reach
     /// </summary>
-    public float maxSpeed = 20f;
+    public float maxSpeed = 16f;
 
     /// <summary>
     /// used to stop the player from moving after tapping
@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
 	/// </summary>
 	public static int COLOR;
 
-
     // Use this for initialization
     /// <summary>
     /// increase the game object's speed in 10 seconds, and every 10 seconds after
@@ -122,11 +121,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (transform.position.x >= rightBound.transform.position.x)
+        if (transform.position.x >= rightBound.transform.position.x - 1.5f)
         {
             speed = -absoluteSpeed;
         }
-        else if (transform.position.x <= leftBound.transform.position.x)
+        else if (transform.position.x <= leftBound.transform.position.x + 1.5f)
         {
             speed = absoluteSpeed;
         }
@@ -143,8 +142,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void increaseSpeed()
     {
-        if (speed <= maxSpeed)
-        {
+		if (speed <= maxSpeed){
             absoluteSpeed += 0.5f;
         }
     }
@@ -161,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 		renderer.sprite = cloudPlayerDrop;
         yield return new WaitForSeconds(s);
         isStopped = false;
-		COLOR = Random.Range(0, 5);
+		COLOR = Random.Range(0, 6);
 		switch (COLOR)
 		{
 		case 0:
@@ -179,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
 		case 4:
 			renderer.sprite = redPlayer;
 			break;
-		default:
+		case 5:
 			renderer.sprite = yellowPlayer;
 			break;
 		}

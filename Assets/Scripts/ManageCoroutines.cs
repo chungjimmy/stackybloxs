@@ -14,6 +14,16 @@ public class ManageCoroutines : MonoBehaviour {
 	public GameObject perfectText;
 
 	/// <summary>
+	/// The player.
+	/// </summary>
+	public GameObject player;
+
+	/// <summary>
+	/// hold current player speed
+	/// </summary>
+	private float tempSpeed;
+
+	/// <summary>
 	/// The block position.
 	/// </summary>
 	private Transform blockPos;
@@ -44,17 +54,14 @@ public class ManageCoroutines : MonoBehaviour {
 		}
 
 		if(BlockBehavior.displayCombo){
-//			delay += Time.deltaTime;
-//			if((Combo.combo - 1) >= 0 && (Combo.combo - 1) <= 4)
-//			combo = comboText.transform.GetChild(Combo.combo-1).gameObject;
-//			Debug.Log(Combo.combo-1);
-//			combo.gameObject.SetActive(true);
-//			if(delay > .3f){
-//				combo.gameObject.SetActive(false);			
-//				BlockBehavior.displayCombo = false;
-//				delay = 0f;
-//			}
 			StartCoroutine(DisplayCombo(.3f));
+		}
+
+		if(RainAction.rainSLow){
+			StartCoroutine(SlowPlayer(8f));
+		}
+		else{
+			tempSpeed = player.GetComponent<PlayerMovement>().absoluteSpeed;
 		}
 
 	}
@@ -102,5 +109,12 @@ public class ManageCoroutines : MonoBehaviour {
 			combo.gameObject.SetActive(false);			
 			BlockBehavior.displayCombo = false;
 		}
+	}
+
+	public IEnumerator SlowPlayer(float s){
+		player.GetComponent<PlayerMovement>().absoluteSpeed = 2f;
+		yield return new WaitForSeconds(s);
+		player.GetComponent<PlayerMovement>().absoluteSpeed = tempSpeed;
+		RainAction.rainSLow = false;
 	}
 }

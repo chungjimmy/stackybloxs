@@ -47,7 +47,15 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public static bool displayGreat;
 
+	/// <summary>
+	/// let manager know when to display combo text
+	/// </summary>
 	public static bool displayCombo;
+
+	/// <summary>
+	/// check to see if combo has been reseted alreadywhen block is touching another block/platform
+	/// </summary>
+	public bool comboReseted;
 
     /// <summary>
     /// hide the block when it falls off the bottom
@@ -91,12 +99,20 @@ public class BlockBehavior : MonoBehaviour {
 					float distance = calculateDistance(block);
 
                     if (distance <= perfect_distance)
-                    {                        
+                    {   
 						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
 						displayPerfect = true;
-
+						comboReseted = false;
 						Combo.combo++;
+						Debug.Log(Combo.combo);
 						displayCombo = true;
+
+						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
+							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
+							//Debug.Log("hi hi hi");
+							manager.GetComponent<ItemSpawner>().ItemSpawn();
+						}
+
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
@@ -105,16 +121,29 @@ public class BlockBehavior : MonoBehaviour {
                     {                        
 						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
 						displayGreat = true;
-
+						comboReseted = false;
 						Combo.combo++;
+						Debug.Log(Combo.combo);
 						displayCombo = true;
+
+						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
+							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
+							Debug.Log("hi hi hi");
+							manager.GetComponent<ItemSpawner>().ItemSpawn();
+						}
+
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
                     }
                     else if (distance <= ok_distance)
                     {
-                        Combo.resetCombo();
+						if(!(comboReseted)){
+                        	Combo.resetCombo();
+							comboReseted = true;
+							Debug.Log(Combo.combo);
+						}
+
                     }
                 }
             }
