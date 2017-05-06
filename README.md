@@ -100,7 +100,19 @@ Prepare This Readme.
 * cloud animations (on lose) - Stevie
 * block animations - Jimmy
 ###Scrum meeting notes:
+fixed lose conditions
+added items
+added sprites/animations
+added platform
 //TODO
+fix bugs
+add google leaderboard
+add timer
+add color interaction
+add item animations
+add mystery cube
+add tutorial
+add sound
 
 ---
 ##Due 05/13:
