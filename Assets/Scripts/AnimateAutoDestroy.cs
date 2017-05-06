@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindAction : MonoBehaviour {
+public class AnimateAutoDestroy : MonoBehaviour {
 
-	GameObject player;
+	public float delay = 0f;
 
-	public static bool windStop;
 	// Use this for initialization
 	void Start () {
-		
+		Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + delay);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	public void Effect(){
-		windStop = true;
-		gameObject.SetActive(false);
 	}
 }

@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// used to stop the player from moving after tapping
     /// </summary>
-    private bool isStopped = false;
+    public bool isStopped = false;
 
     /// <summary>
     /// the right border of the game screen
@@ -158,7 +158,10 @@ public class PlayerMovement : MonoBehaviour
         isStopped = true;
 		renderer.sprite = cloudPlayerDrop;
         yield return new WaitForSeconds(s);
-        isStopped = false;
+		if(WindAction.windStop == false){
+        	isStopped = false;
+		}
+
 		COLOR = Random.Range(0, 6);
 		switch (COLOR)
 		{
@@ -181,5 +184,6 @@ public class PlayerMovement : MonoBehaviour
 			renderer.sprite = yellowPlayer;
 			break;
 		}
+
     }
 }

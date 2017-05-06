@@ -53,6 +53,11 @@ public class BlockBehavior : MonoBehaviour {
 	public static bool displayCombo;
 
 	/// <summary>
+	/// let manager know when to display particles
+	/// </summary>
+	public static bool displayParticle;
+
+	/// <summary>
 	/// check to see if combo has been reseted alreadywhen block is touching another block/platform
 	/// </summary>
 	public bool comboReseted;
@@ -106,14 +111,16 @@ public class BlockBehavior : MonoBehaviour {
 						Combo.combo++;
 						Debug.Log(Combo.combo);
 						displayCombo = true;
-
+						//mystery block action
 						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
 							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
-							//Debug.Log("hi hi hi");
 							manager.GetComponent<ItemSpawner>().ItemSpawn();
 						}
-
+						//increase score
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
+						//display particle effect
+						displayParticle = true;
+
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
                     }
@@ -125,14 +132,17 @@ public class BlockBehavior : MonoBehaviour {
 						Combo.combo++;
 						Debug.Log(Combo.combo);
 						displayCombo = true;
-
+						//mystery block action
 						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
 							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
-							Debug.Log("hi hi hi");
 							manager.GetComponent<ItemSpawner>().ItemSpawn();
 						}
 
                         CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
+
+						//display particle effect
+						displayParticle = true;
+
                         Destroy(this.gameObject);
                         Destroy(block.gameObject);
                     }

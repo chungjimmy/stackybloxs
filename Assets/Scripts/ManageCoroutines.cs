@@ -13,6 +13,8 @@ public class ManageCoroutines : MonoBehaviour {
 	/// </summary>
 	public GameObject perfectText;
 
+	public GameObject particle;
+
 	/// <summary>
 	/// The player.
 	/// </summary>
@@ -33,12 +35,32 @@ public class ManageCoroutines : MonoBehaviour {
 
 	private GameObject combo;
 
-	private float delay = 0f;
+	private float timeToDisplay;
+
+	private float delayParticle;
+
+	private float randomSpawnX;
+
+	private float randomSpawnY;
+
+	private int counter;
+
+	private GameObject particleEffect;
+
+	private float randomSize;
+
+	private Vector3 particleSpawnPoint;
 	/// <summary>
 	/// initialize blockPos
 	/// </summary>
 	void Start () {
+		counter = 0;
 		blockPos = gameObject.transform;
+		tempSpeed = 2f;
+		delayParticle = 0f;
+		timeToDisplay = .1f;
+		randomSpawnX = 0f;
+		randomSpawnY = 0f;
 	}
 	
 	/// <summary>
@@ -57,12 +79,39 @@ public class ManageCoroutines : MonoBehaviour {
 			StartCoroutine(DisplayCombo(.3f));
 		}
 
+		if(BlockBehavior.displayParticle){
+		//	delayParticle += Time.deltaTime;
+
+			if(delayParticle <= Time.time){
+				randomSpawnX = Random.Range(-.5f, .5f);
+				randomSpawnY = Random.Range(-.5f, .5f);
+				Debug.Log(randomSpawnX);
+				particleSpawnPoint = new Vector3(blockPos.transform.position.x + randomSpawnX , blockPos.transform.position.y + randomSpawnY, blockPos.transform.position.z);
+				particleEffect = Instantiate(particle, particleSpawnPoint, Quaternion.identity);
+				randomSize = Random.Range(-.3f, 1f);
+				particleEffect.transform.localScale = new Vector3(particleEffect.transform.localScale.x + randomSize, particleEffect.transform.localScale.y + randomSize, particleEffect.transform.localScale.z);
+				delayParticle = Time.time + timeToDisplay;
+				counter++;
+			}
+
+			if(counter > 5){
+				counter = 0;
+				BlockBehavior.displayParticle = false;
+				delayParticle = 0f;
+			}
+		}
+
 		if(RainAction.rainSLow){
-			StartCoroutine(SlowPlayer(8f));
+			StartCoroutine(RainSlowPlayer(8f));
 		}
 		else{
 			tempSpeed = player.GetComponent<PlayerMovement>().absoluteSpeed;
 		}
+
+		if(WindAction.windStop){
+			StartCoroutine(WindStopPlayer(8f));
+		}
+
 
 	}
 	/// <summary>
@@ -111,10 +160,24 @@ public class ManageCoroutines : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator SlowPlayer(float s){
+//	public IEnumerator DisplayParticle(float s){
+//		particle.transform.position = blockPos.transform.position;
+//		particle.SetActive(true);
+//		yield return new WaitForSeconds(s);
+//		particle.SetActive(false);
+//		BlockBehavior.displayParticle = false;
+//	}
+
+	public IEnumerator RainSlowPlayer(float s){
 		player.GetComponent<PlayerMovement>().absoluteSpeed = 2f;
 		yield return new WaitForSeconds(s);
 		player.GetComponent<PlayerMovement>().absoluteSpeed = tempSpeed;
 		RainAction.rainSLow = false;
+	}
+
+	public IEnumerator WindStopPlayer(float s){
+		player.GetComponent<PlayerMovement>().isStopped = true;
+		yield return new WaitForSeconds(s);
+		WindAction.windStop = false;
 	}
 }

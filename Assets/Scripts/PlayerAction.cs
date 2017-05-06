@@ -38,23 +38,14 @@ public class PlayerAction : MonoBehaviour {
     /// increment speed and stop the player for 0.5s after tapping
     /// </summary>
 	void Update () {
-        if (nextFire <= Time.time)
+		if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-//				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//				RaycastHit2D hit;
-//				if(Physics2D.Raycast(ray, out hit)){
-//					if(hit.transform.name == "ItemBox"){
-//						Debug.Log("hi hi hi");
-//					}
+			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-				RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			if (nextFire <= Time.time)
+            {
 				if(hit.collider != null){
-					if(hit.transform.tag == "Item"){
-						ItemSpawner.ACTIVEITEM = true;
-					}
-					else{
+					if(hit.transform.tag != "Item"){
 						GetComponent<PlayerMovement>().increaseSpeed();
 						StartCoroutine(GetComponent<PlayerMovement>().stopPlayer(0.5f));
 						//				renderer.sprite = cloudPlayerDrop;
@@ -69,6 +60,12 @@ public class PlayerAction : MonoBehaviour {
 				}
 
             }
+			//check to see if player tap itembox
+			if(hit.collider != null){
+				if(hit.transform.tag == "Item"){
+					ItemSpawner.ACTIVEITEM = true;
+				}
+			}
         }
     }
 

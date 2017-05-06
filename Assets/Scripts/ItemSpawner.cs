@@ -13,7 +13,7 @@ public class ItemSpawner : MonoBehaviour {
 
 	public static bool ACTIVEITEM;
 
-	public bool active;
+	//public bool active;
 	// Use this for initialization
 	void Start () {
 		itemID = -1;
@@ -21,7 +21,7 @@ public class ItemSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		active = ACTIVEITEM;
+		//active = ACTIVEITEM;
 		if(itemID >= 0 && ACTIVEITEM){
 			switch(itemID){
 				case 0:
@@ -37,11 +37,13 @@ public class ItemSpawner : MonoBehaviour {
 					twoTime.gameObject.GetComponent<TwoXAction>().Effect();
 					break;
 			}
+			itemID = -1;
 			ACTIVEITEM = false;
 		}
 	}
 
 	public void ItemSpawn(){
+		//use previouse item when new item comes in
 		if(itemID >= 0){
 			switch(itemID){
 				case 0:

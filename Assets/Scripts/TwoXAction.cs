@@ -15,7 +15,6 @@ public class TwoXAction : MonoBehaviour {
 	}
 
 	public void Effect(){
-		Debug.Log("2x");
 		gameObject.SetActive(false);
 	}
 }
