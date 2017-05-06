@@ -101,4 +101,14 @@ public class GameEnd : MonoBehaviour {
 			}
 		}
 	}
+
+	public void End(){
+		player.SetActive(false);
+		gameOver.SetActive(true);
+
+		highScoreText.SetActive(true);
+		SaveFile.saveScore.Save();
+		SaveFile.saveScore.load();
+		over = true;
+	}
 }

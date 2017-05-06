@@ -62,29 +62,30 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public bool comboReseted;
 
-    /// <summary>
-    /// hide the block when it falls off the bottom
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.name == "Bottom")
-        {
-            Combo.resetCombo();
-            Destroy(this.gameObject);
-        }
-    }
-
 	// Use this for initialization
 	/// <summary>
 	/// get all current blocks in the scene
-	/// get collider component of this game object
+/// get collider component of this game object
 	/// </summary>
 	void Start () {
 		blocks = GameObject.FindGameObjectsWithTag("Block");
 		collider = GetComponent<BoxCollider2D>();
 		manager = GameObject.FindGameObjectWithTag("Manager");
+	}
 
+	/// <summary>
+	/// hide the block when it falls off the bottom and game ends
+	/// game end also if block touches platform twice
+	/// </summary>
+	/// <param name="other"></param>
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.gameObject.name == "Bottom")
+		{
+			Combo.resetCombo();
+			manager.GetComponent<GameEnd> ().End ();
+			Destroy(this.gameObject);
+		}
 	}
 
 	// Update is called once per frame
