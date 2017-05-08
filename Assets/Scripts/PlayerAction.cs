@@ -24,12 +24,14 @@ public class PlayerAction : MonoBehaviour {
 
 	private Vector3 blockPos;
 
+	private GameObject manager;
+
 //	private SpriteRenderer renderer;
 
 //	public Sprite cloudPlayerDrop;
 	// Use this for initialization
 	void Start () {
-//		renderer = GetComponent<SpriteRenderer>();
+		manager = GameObject.FindGameObjectWithTag("Manager");
 	}
 	
 	// Update is called once per frame
@@ -76,7 +78,8 @@ public class PlayerAction : MonoBehaviour {
     private void createBlock()
     {
 		blockPos = new Vector3(transform.position.x, transform.position.y - .63f, transform.position.z);
-		Instantiate(block, blockPos, Quaternion.identity);
+		GameObject blocky = (GameObject)Instantiate(block, blockPos, Quaternion.identity);
+		manager.gameObject.GetComponent<BlockStack>().PushBlock(blocky);
         nextFire = Time.time + fireRate;
     }
 }

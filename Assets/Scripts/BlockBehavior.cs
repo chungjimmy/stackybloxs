@@ -10,7 +10,7 @@ public class BlockBehavior : MonoBehaviour {
 	/// <summary>
 	/// an array of the existing blocks in the scene
 	/// </summary>
-	private GameObject[] blocks;
+	//private GameObject[] blocks;
 
 	/// <summary>
 	/// this game object's collider
@@ -32,10 +32,17 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public float ok_distance = .5f;
 
+	public float notOk_distance = .7f;
+
 	/// <summary>
 	/// Manager gameobject, use to access ManageCoroutines Script
 	/// </summary>
 	private GameObject manager;
+
+	/// <summary>
+	/// The platform
+	/// </summary>
+	private GameObject platform;
 
 	/// <summary>
 	/// boolean to see if greatText need to be displayed, default false
@@ -65,12 +72,13 @@ public class BlockBehavior : MonoBehaviour {
 	// Use this for initialization
 	/// <summary>
 	/// get all current blocks in the scene
-/// get collider component of this game object
+	/// get collider component of this game object
 	/// </summary>
 	void Start () {
-		blocks = GameObject.FindGameObjectsWithTag("Block");
+		//blocks = GameObject.FindGameObjectsWithTag("Block");
 		collider = GetComponent<BoxCollider2D>();
 		manager = GameObject.FindGameObjectWithTag("Manager");
+		platform = GameObject.FindGameObjectWithTag("Platform");
 	}
 
 	/// <summary>
@@ -88,79 +96,86 @@ public class BlockBehavior : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	/// <summary>
-	/// calculate distance between blocks
-	/// if perfect, great, or ok, hide blocks and update score
-	/// else the blocks will stack
-	/// </summary>
-	void Update () {
+	void OnCollisionEnter2D(Collision2D block){
 		try
 		{
-			foreach (GameObject block in blocks)
-			{
-				if (collider.IsTouching(block.GetComponent<BoxCollider2D>()))
-				{
+			if(block.gameObject != manager.gameObject.GetComponent<BlockStack>().PeekBlock()){
+				Debug.Log( manager.gameObject.GetComponent<BlockStack>().PeekBlock().gameObject.GetComponent<SpriteRenderer>().sprite);
+				manager.GetComponent<GameEnd>().End();
+			}
+			else if(block.gameObject.tag == "Block"){
+				float distance = calculateDistance(block.gameObject);
+				if (distance <= perfect_distance)
+				{   
+					manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
+					displayPerfect = true;
+					comboReseted = false;
+					Combo.combo++;
+					//Debug.Log(Combo.combo);
+					displayCombo = true;
+					//mystery block action
+					if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 6
+						|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 6){
+						manager.GetComponent<ItemSpawner>().ItemSpawn();
+					}
+					//increase score
+					CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
+					//display particle effect
+					displayParticle = true;
 
-					float distance = calculateDistance(block);
+					manager.gameObject.GetComponent<BlockStack>().PopTwoBlocks();
 
-                    if (distance <= perfect_distance)
-                    {   
-						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
-						displayPerfect = true;
-						comboReseted = false;
-						Combo.combo++;
-						Debug.Log(Combo.combo);
-						displayCombo = true;
-						//mystery block action
-						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
-							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
-							manager.GetComponent<ItemSpawner>().ItemSpawn();
-						}
-						//increase score
-                        CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
-						//display particle effect
-						displayParticle = true;
+					Destroy(this.gameObject);
+					Destroy(block.gameObject);
+				}
+				else if (distance <= great_distance)
+				{                        
+					manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
+					displayGreat = true;
+					comboReseted = false;
+					Combo.combo++;
+					//Debug.Log(Combo.combo);
+					displayCombo = true;
+					//mystery block action
+					if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 6
+						|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 6){
+						manager.GetComponent<ItemSpawner>().ItemSpawn();
+					}
 
-                        Destroy(this.gameObject);
-                        Destroy(block.gameObject);
-                    }
-                    else if (distance <= great_distance)
-                    {                        
-						manager.GetComponent<ManageCoroutines>().setBlockPos(gameObject.transform);
-						displayGreat = true;
-						comboReseted = false;
-						Combo.combo++;
-						Debug.Log(Combo.combo);
-						displayCombo = true;
-						//mystery block action
-						if(this.gameObject.GetComponent<BlockColor>().thisBlockColor == 4
-							|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 4){
-							manager.GetComponent<ItemSpawner>().ItemSpawn();
-						}
+					CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
 
-                        CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
+					//display particle effect
+					displayParticle = true;
 
-						//display particle effect
-						displayParticle = true;
+					manager.gameObject.GetComponent<BlockStack>().PopTwoBlocks();
 
-                        Destroy(this.gameObject);
-                        Destroy(block.gameObject);
-                    }
-                    else if (distance <= ok_distance)
-                    {
-						if(!(comboReseted)){
-                        	Combo.resetCombo();
-							comboReseted = true;
-							Debug.Log(Combo.combo);
-						}
+					Destroy(this.gameObject);
+					Destroy(block.gameObject);
+				}
+				else if (distance <= ok_distance){
+					if(!(comboReseted)){
+						Combo.resetCombo();
+						comboReseted = true;
+						//Debug.Log(Combo.combo);
+					} 
 
-                    }
-                }
-            }
-        }
-        catch { }
-
+				}
+				else if (distance > notOk_distance){
+					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+					Debug.Log(distance + " > " + notOk_distance);
+					manager.GetComponent<GameEnd>().End();
+				}
+			}
+			else if(block.gameObject.tag == "Platform"){
+				if(!(comboReseted)){
+					Combo.resetCombo();
+					comboReseted = true;
+				}
+			}
+		}
+		catch { }
+		//destroy this script after collission to avoid collission twice
+		Destroy(this);
 	}
 
 	/// <summary>

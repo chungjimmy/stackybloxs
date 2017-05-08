@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// script is responsible for randomizing the color of spawned blocks
+/// this script is located on block prefab
 /// </summary>
 public class BlockColor : MonoBehaviour {
 
@@ -41,6 +42,8 @@ public class BlockColor : MonoBehaviour {
     /// the image of the yellow block
     /// </summary>
     public Sprite yellowBlock;
+
+	public Sprite itemBlock;
 
 	/// <summary>
 	/// The color of the this block
@@ -93,6 +96,10 @@ public class BlockColor : MonoBehaviour {
                 renderer.sprite = yellowBlock;
 				thisBlockColor = 5;
                 break;
+			case 6:
+				renderer.sprite = itemBlock;
+				thisBlockColor = 6;
+				break;
         }
     }
 }

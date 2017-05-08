@@ -13,7 +13,9 @@ public class ManageCoroutines : MonoBehaviour {
 	/// </summary>
 	public GameObject perfectText;
 
-	public GameObject particle;
+	public GameObject[] particle;
+
+	private int randomParticle;
 
 	/// <summary>
 	/// The player.
@@ -54,6 +56,7 @@ public class ManageCoroutines : MonoBehaviour {
 	/// initialize blockPos
 	/// </summary>
 	void Start () {
+		randomParticle = 0;
 		counter = 0;
 		blockPos = gameObject.transform;
 		tempSpeed = 2f;
@@ -80,15 +83,13 @@ public class ManageCoroutines : MonoBehaviour {
 		}
 
 		if(BlockBehavior.displayParticle){
-		//	delayParticle += Time.deltaTime;
-
 			if(delayParticle <= Time.time){
 				randomSpawnX = Random.Range(-.5f, .5f);
 				randomSpawnY = Random.Range(-.5f, .5f);
-				Debug.Log(randomSpawnX);
 				particleSpawnPoint = new Vector3(blockPos.transform.position.x + randomSpawnX , blockPos.transform.position.y + randomSpawnY, blockPos.transform.position.z);
-				particleEffect = Instantiate(particle, particleSpawnPoint, Quaternion.identity);
-				randomSize = Random.Range(-.3f, 1f);
+				randomParticle = Random.Range(0, 6);
+				particleEffect = Instantiate(particle[randomParticle], particleSpawnPoint, Quaternion.identity);
+				randomSize = Random.Range(-.2f, 1.4f);
 				particleEffect.transform.localScale = new Vector3(particleEffect.transform.localScale.x + randomSize, particleEffect.transform.localScale.y + randomSize, particleEffect.transform.localScale.z);
 				delayParticle = Time.time + timeToDisplay;
 				counter++;

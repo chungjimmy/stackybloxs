@@ -6,9 +6,11 @@ public class ThunderAction : MonoBehaviour {
 
 	private GameObject[] blocks;
 
+	private GameObject manager;
+
 	// Use this for initialization
 	void Start () {
-		
+		manager = GameObject.FindGameObjectWithTag("Manager");
 	}
 	
 	// Update is called once per frame
@@ -21,6 +23,7 @@ public class ThunderAction : MonoBehaviour {
 		foreach (GameObject block in blocks){
 			Destroy(block.gameObject);
 		}
+		manager.gameObject.GetComponent<BlockStack>().ClearAllBlock();
 		gameObject.SetActive(false);
 	}
 }

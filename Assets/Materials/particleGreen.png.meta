@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: e57605f312e62694689f415944f88499
-timeCreated: 1494221313
+guid: 927d968b1fc97bc49a4abba196685960
+timeCreated: 1494221292
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: particleRed 1_0
-    21300002: particleRed 1_1
-    21300004: particleRed 1_2
-    21300006: particleRed 1_3
-    21300008: particleRed 1_4
-    21300010: particleRed 1_5
+    21300000: particleGreen_0
+    21300002: particleGreen_1
+    21300004: particleGreen_2
+    21300006: particleGreen_3
+    21300008: particleGreen_4
+    21300010: particleGreen_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -92,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: particleRed 1_0
+      name: particleGreen_0
       rect:
         serializedVersion: 2
         x: 0
@@ -105,7 +105,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: particleRed 1_1
+      name: particleGreen_1
       rect:
         serializedVersion: 2
         x: 194
@@ -118,7 +118,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: particleRed 1_2
+      name: particleGreen_2
       rect:
         serializedVersion: 2
         x: 371
@@ -131,7 +131,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: particleRed 1_3
+      name: particleGreen_3
       rect:
         serializedVersion: 2
         x: 537
@@ -144,7 +144,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: particleRed 1_4
+      name: particleGreen_4
       rect:
         serializedVersion: 2
         x: 705
@@ -157,7 +157,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: particleRed 1_5
+      name: particleGreen_5
       rect:
         serializedVersion: 2
         x: 853

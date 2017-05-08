@@ -73,6 +73,11 @@ public class PlayerMovement : MonoBehaviour
 	public Sprite yellowPlayer;
 
 	/// <summary>
+	/// The item player.
+	/// </summary>
+	public Sprite itemPlayer;
+
+	/// <summary>
 	/// the image of player dropping a block
 	/// </summary>
 	public Sprite cloudPlayerDrop;
@@ -90,27 +95,30 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 		renderer = GetComponent<SpriteRenderer>();
-		COLOR = Random.Range(0, 5);
+		COLOR = Random.Range(0, 7);
 		switch (COLOR)
 		{
-		case 0:
-			renderer.sprite = bluePlayer;
-			break;
-		case 1:
-			renderer.sprite = greenPlayer;
-			break;
-		case 2:
-			renderer.sprite = orangePlayer;
-			break;
-		case 3:
-			renderer.sprite = purplePlayer;
-			break;
-		case 4:
-			renderer.sprite = redPlayer;
-			break;
-		default:
-			renderer.sprite = yellowPlayer;
-			break;
+			case 0:
+				renderer.sprite = bluePlayer;
+				break;
+			case 1:
+				renderer.sprite = greenPlayer;
+				break;
+			case 2:
+				renderer.sprite = orangePlayer;
+				break;
+			case 3:
+				renderer.sprite = purplePlayer;
+				break;
+			case 4:
+				renderer.sprite = redPlayer;
+				break;
+			case 5:
+				renderer.sprite = yellowPlayer;
+				break;
+			case 6:
+				renderer.sprite = itemPlayer;
+				break;
 		}
     }
 
@@ -162,27 +170,30 @@ public class PlayerMovement : MonoBehaviour
         	isStopped = false;
 		}
 
-		COLOR = Random.Range(0, 6);
+		COLOR = Random.Range(0, 7);
 		switch (COLOR)
 		{
-		case 0:
-			renderer.sprite = bluePlayer;
-			break;
-		case 1:
-			renderer.sprite = greenPlayer;
-			break;
-		case 2:
-			renderer.sprite = orangePlayer;
-			break;
-		case 3:
-			renderer.sprite = purplePlayer;
-			break;
-		case 4:
-			renderer.sprite = redPlayer;
-			break;
-		case 5:
-			renderer.sprite = yellowPlayer;
-			break;
+			case 0:
+				renderer.sprite = bluePlayer;
+				break;
+			case 1:
+				renderer.sprite = greenPlayer;
+				break;
+			case 2:
+				renderer.sprite = orangePlayer;
+				break;
+			case 3:
+				renderer.sprite = purplePlayer;
+				break;
+			case 4:
+				renderer.sprite = redPlayer;
+				break;
+			case 5:
+				renderer.sprite = yellowPlayer;
+				break;
+			case 6:
+				renderer.sprite = itemPlayer;
+				break;
 		}
 
     }
