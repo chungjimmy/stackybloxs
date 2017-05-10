@@ -167,6 +167,13 @@ public class BlockBehavior : MonoBehaviour {
 				}
 			}
 			else if(block.gameObject.tag == "Platform"){
+				float platformDistance = calculateDistance(block.gameObject);
+				Debug.Log(platformDistance);
+				if(platformDistance > 1.4f){
+					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+					Debug.Log(platformDistance + " > " + "1.4");
+					manager.GetComponent<GameEnd>().End();
+				}
 				if(!(comboReseted)){
 					Combo.resetCombo();
 					comboReseted = true;

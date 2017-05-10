@@ -6,7 +6,7 @@ public class CurrentScore : MonoBehaviour {
     /// <summary>
     /// initialize current score
     /// </summary>
-	public static int currentScore = 0;
+	public static int currentScore;
 
     /// <summary>
     /// game scene CurrentScore text object
@@ -24,7 +24,10 @@ public class CurrentScore : MonoBehaviour {
 	void Awake(){
 		_cScore = this;
 	}
-	
+
+	void Start(){
+		currentScore = 0;
+	}
 	// Update is called once per frame
     /// <summary>
     /// update current score
