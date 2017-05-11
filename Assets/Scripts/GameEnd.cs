@@ -15,6 +15,12 @@ public class GameEnd : MonoBehaviour {
 	/// gameover text gameobject, use to disable gameover text
 	/// </summary>
 	public GameObject gameOver;
+
+    /// <summary>
+    /// leaderboard button shown on gameover
+    /// </summary>
+    public GameObject leaderboard;
+
 	/// <summary>
 	/// a boolean, use with exit boolean to check if game should be over
 	/// </summary>
@@ -81,11 +87,11 @@ public class GameEnd : MonoBehaviour {
 			delay += Time.deltaTime;
 			if (delay > 1.3f) {
 				if (exit == false && scoreTracker == CurrentScore.currentScore) {
-					player.SetActive(false);
-					gameOver.SetActive(true);
+                    player.SetActive(false);
+                    gameOver.SetActive(true);
 
-					highScoreText.SetActive(true);
-					SaveFile.saveScore.Save();
+                    highScoreText.SetActive(true);
+                    SaveFile.saveScore.Save();
 					SaveFile.saveScore.load();
 					over = true;
 				}
@@ -105,7 +111,7 @@ public class GameEnd : MonoBehaviour {
 	public void End(){
 		player.SetActive(false);
 		gameOver.SetActive(true);
-
+        leaderboard.SetActive(true);
 		highScoreText.SetActive(true);
 		SaveFile.saveScore.Save();
 		SaveFile.saveScore.load();
