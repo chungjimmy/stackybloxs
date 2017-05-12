@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     public void increaseSpeed()
     {
 		if (speed <= maxSpeed){
-            absoluteSpeed += 0.5f;
+            absoluteSpeed += 0.2f;
         }
     }
 

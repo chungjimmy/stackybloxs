@@ -81,7 +81,7 @@ public class ManageCoroutines : MonoBehaviour {
 		if(BlockBehavior.displayCombo){
 			StartCoroutine(DisplayCombo(.3f));
 		}
-
+		//animation for when block is destroyed
 		if(BlockBehavior.displayParticle){
 			if(delayParticle <= Time.time){
 				randomSpawnX = Random.Range(-.5f, .5f);
@@ -103,7 +103,7 @@ public class ManageCoroutines : MonoBehaviour {
 		}
 
 		if(RainAction.rainSLow){
-			StartCoroutine(RainSlowPlayer(8f));
+			StartCoroutine(RainSlowPlayer(10f));
 		}
 		else{
 			tempSpeed = player.GetComponent<PlayerMovement>().absoluteSpeed;

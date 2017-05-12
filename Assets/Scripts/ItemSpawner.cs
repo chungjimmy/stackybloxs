@@ -43,23 +43,41 @@ public class ItemSpawner : MonoBehaviour {
 	}
 
 	public void ItemSpawn(){
-		//use previouse item when new item comes in
+//		//use previouse item when new item comes in
+//		if(itemID >= 0){
+//			switch(itemID){
+//				case 0:
+//					thunder.gameObject.GetComponent<ThunderAction>().Effect();
+//					break;
+//				case 1:
+//					wind.gameObject.GetComponent<WindAction>().Effect();
+//					break;
+//				case 2:
+//					rain.gameObject.GetComponent<RainAction>().Effect();
+//					break;
+//				case 3:
+//					twoTime.gameObject.GetComponent<TwoXAction>().Effect();
+//					break;
+//			}
+//		}
+		//turn off previous item
 		if(itemID >= 0){
 			switch(itemID){
 				case 0:
-					thunder.gameObject.GetComponent<ThunderAction>().Effect();
+					thunder.gameObject.SetActive(false);
 					break;
 				case 1:
-					wind.gameObject.GetComponent<WindAction>().Effect();
+					wind.gameObject.SetActive(false);
 					break;
 				case 2:
-					rain.gameObject.GetComponent<RainAction>().Effect();
+					rain.gameObject.SetActive(false);
 					break;
 				case 3:
-					twoTime.gameObject.GetComponent<TwoXAction>().Effect();
+					twoTime.gameObject.SetActive(false);
 					break;
 			}
 		}
+
 		itemID = Random.Range(0, 4);
 		switch(itemID){
 			case 0:

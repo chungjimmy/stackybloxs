@@ -10,7 +10,7 @@ public class Tutorial : MonoBehaviour {
 	public GameObject itemBox;
 	public bool playTut;
 
-	private bool step1, step2, step3, step4, step5;
+	private bool step1, step2, step3, step4, step5, step6;
 	//cheks if player is in tutorial or not
 	public static bool INTUTORIAL;
 
@@ -34,6 +34,7 @@ public class Tutorial : MonoBehaviour {
 			INTUTORIAL = true;
 			step1 = true;
 			player.gameObject.GetComponent<PlayerMovement>().isStopped = true;
+			tut.transform.GetChild(11).gameObject.SetActive(true);
 			tut.transform.GetChild(0).gameObject.SetActive(true);
 			tut.transform.GetChild(1).gameObject.SetActive(true);
 			tut.transform.GetChild(4).gameObject.SetActive(true);
@@ -45,17 +46,19 @@ public class Tutorial : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(step5){
+		//ready
+		if(step6){
 			player.gameObject.GetComponent<PlayerMovement>().isStopped = true;
 			tut.transform.GetChild(1).gameObject.SetActive(true);
 			tut.transform.GetChild(8).gameObject.SetActive(true);
 
 			if (Input.GetMouseButtonDown(0)){
+				tut.transform.GetChild(11).gameObject.SetActive(false);
 				tut.transform.GetChild(1).gameObject.SetActive(false);
 				tut.transform.GetChild(8).gameObject.SetActive(false);
 				player.gameObject.GetComponent<PlayerMovement>().isStopped = false;
 				player.gameObject.GetComponent<PlayerAction>().enabled = true;
-				step5 = false;
+				step6 = false;
 				step1 = true;
 				PlayerPrefs.SetInt("noob", 1);
 				PlayerPrefs.Save();
@@ -64,7 +67,23 @@ public class Tutorial : MonoBehaviour {
 				this.enabled = false;
 			}
 		}
-		//lose
+		//lose2
+		if(step5){
+			player.gameObject.GetComponent<PlayerMovement>().isStopped = true;
+			tut.transform.GetChild(10).gameObject.SetActive(true);
+			tut.transform.GetChild(1).gameObject.SetActive(true);
+			tut.transform.GetChild(9).gameObject.SetActive(true);
+
+			if (Input.GetMouseButtonDown(0)){
+				player.gameObject.GetComponent<PlayerMovement>().isStopped = true;
+				tut.transform.GetChild(10).gameObject.SetActive(false);
+				tut.transform.GetChild(1).gameObject.SetActive(false);
+				tut.transform.GetChild(9).gameObject.SetActive(false);
+				step5 = false;
+				step6 = true;
+			}
+		}
+		//lose1
 		if(step4){
 			player.gameObject.GetComponent<PlayerMovement>().isStopped = true;
 			tut.transform.GetChild(3).gameObject.SetActive(true);
