@@ -120,8 +120,18 @@ add sound
 * Create Special blocks (score multiplier, clear blocks, cloud slow down) -everyone
 * Fix Bugs, testing - everyone
 ###Scrum meeting notes:
+- add home and tutorial
+- fixed block interaction
+- fixed lose scenarios
+- tested on android
+- add mystery blocks and items
+- added google play
 //TODO
-
+- fix home screen buttons
+- fix on lose display
+- add animations
+- fix google play
+- test and fix all bugs
 ---
 ##Due 05/20:DEMO DAY
 * Fix bugs, testing - everyone
