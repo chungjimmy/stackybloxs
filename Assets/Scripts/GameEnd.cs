@@ -21,6 +21,8 @@ public class GameEnd : MonoBehaviour {
     /// </summary>
     public GameObject leaderboard;
 
+	public GameObject transition2;
+
 	/// <summary>
 	/// a boolean, use with exit boolean to check if game should be over
 	/// </summary>
@@ -87,34 +89,38 @@ public class GameEnd : MonoBehaviour {
 			delay += Time.deltaTime;
 			if (delay > 1.3f) {
 				if (exit == false && scoreTracker == CurrentScore.currentScore) {
-                    player.SetActive(false);
-                    gameOver.SetActive(true);
-
-                    highScoreText.SetActive(true);
-                    SaveFile.saveScore.Save();
-					SaveFile.saveScore.load();
-					over = true;
+//                    player.SetActive(false);
+//                    gameOver.SetActive(true);
+//
+//                    highScoreText.SetActive(true);
+//                    SaveFile.saveScore.Save();
+//					SaveFile.saveScore.load();
+//					over = true;
+//					transition2.SetActive(true);
+					SceneManager.LoadScene("EndMenu");
 				}
 				delay = 1f;
 				enter = false;
 				exit = false;
 			}
 		}
-		if(over == true){
-			if (Input.GetMouseButtonDown (0)) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene().name);
-				CurrentScore.currentScore = 0;
-			}
-		}
+//		if(over == true){
+//			if (Input.GetMouseButtonDown (0)) {
+//				SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+//				CurrentScore.currentScore = 0;
+//			}
+//		}
 	}
-
+	//used in BlockBehavior when checking for bottom and platform
 	public void End(){
-		player.SetActive(false);
-		gameOver.SetActive(true);
-        leaderboard.SetActive(true);
-		highScoreText.SetActive(true);
-		SaveFile.saveScore.Save();
-		SaveFile.saveScore.load();
-		over = true;
+		SceneManager.LoadScene("EndMenu");
+//		transition2.SetActive(true);
+//		player.SetActive(false);
+//		gameOver.SetActive(true);
+//        leaderboard.SetActive(true);
+//		highScoreText.SetActive(true);
+//		SaveFile.saveScore.Save();
+//		SaveFile.saveScore.load();
+//		over = true;
 	}
 }
