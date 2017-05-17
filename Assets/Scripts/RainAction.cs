@@ -5,6 +5,7 @@ using UnityEngine;
 public class RainAction : MonoBehaviour {
 
 	public static bool rainSLow;
+	public GameObject player;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,8 @@ public class RainAction : MonoBehaviour {
 	}
 
 	public void Effect(){
-		rainSLow = true;
+//		rainSLow = true;
+		player.transform.GetChild(0).gameObject.SetActive(true);
 		gameObject.SetActive(false);
 	}
 }

@@ -69,13 +69,14 @@ public class BlockBehavior : MonoBehaviour {
 	/// </summary>
 	public bool comboReseted;
 
+	public static bool TWOX;
 	// Use this for initialization
 	/// <summary>
 	/// get all current blocks in the scene
 	/// get collider component of this game object
 	/// </summary>
 	void Start () {
-		//blocks = GameObject.FindGameObjectsWithTag("Block");
+		TWOX = false;
 		collider = GetComponent<BoxCollider2D>();
 		manager = GameObject.FindGameObjectWithTag("Manager");
 		platform = GameObject.FindGameObjectWithTag("Platform");
@@ -90,6 +91,7 @@ public class BlockBehavior : MonoBehaviour {
 	{
 		if(other.gameObject.name == "Bottom")
 		{
+			Debug.Log("OVER HERE: bottom");
 			Combo.resetCombo();
 			manager.GetComponent<GameEnd> ().End ();
 			Destroy(this.gameObject);
@@ -100,6 +102,8 @@ public class BlockBehavior : MonoBehaviour {
 		try
 		{
 			if(block.gameObject != manager.gameObject.GetComponent<BlockStack>().PeekBlock()){
+				Debug.Log("OVER HERE:peek BLOCK");
+				Debug.Log(this.gameObject.GetComponent<SpriteRenderer>().sprite);
 				Debug.Log( manager.gameObject.GetComponent<BlockStack>().PeekBlock().gameObject.GetComponent<SpriteRenderer>().sprite);
 				manager.GetComponent<GameEnd>().End();
 			}
@@ -119,7 +123,12 @@ public class BlockBehavior : MonoBehaviour {
 						manager.GetComponent<ItemSpawner>().ItemSpawn();
 					}
 					//increase score
-					CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
+					if(!TWOX){
+						CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 2);
+					}
+					else{
+						CurrentScore.currentScore = (CurrentScore.currentScore + (Combo.combo * 2) * 2);
+					}
 					//display particle effect
 					displayParticle = true;
 
@@ -141,8 +150,12 @@ public class BlockBehavior : MonoBehaviour {
 						|| block.gameObject.GetComponent<BlockColor>().thisBlockColor == 6){
 						manager.GetComponent<ItemSpawner>().ItemSpawn();
 					}
-
-					CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
+					if(!TWOX){
+						CurrentScore.currentScore = CurrentScore.currentScore + (Combo.combo * 1);
+					}
+					else{
+						CurrentScore.currentScore = (CurrentScore.currentScore + (Combo.combo * 1) * 2);
+					}
 
 					//display particle effect
 					displayParticle = true;
@@ -161,6 +174,7 @@ public class BlockBehavior : MonoBehaviour {
 
 				}
 				else if (distance > notOk_distance){
+					Debug.Log("OVER HERE:not OK");
 					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 					Debug.Log(distance + " > " + notOk_distance);
 					manager.GetComponent<GameEnd>().End();
@@ -172,6 +186,7 @@ public class BlockBehavior : MonoBehaviour {
 				if(platformDistance > 1.4f){
 					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 					Debug.Log(platformDistance + " > " + "1.4");
+					Debug.Log("OVER HERE:platform no no");
 					manager.GetComponent<GameEnd>().End();
 				}
 				if(!(comboReseted)){

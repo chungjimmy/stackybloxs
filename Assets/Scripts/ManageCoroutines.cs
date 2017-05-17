@@ -102,16 +102,16 @@ public class ManageCoroutines : MonoBehaviour {
 			}
 		}
 
-		if(RainAction.rainSLow){
-			StartCoroutine(RainSlowPlayer(10f));
-		}
-		else{
-			tempSpeed = player.GetComponent<PlayerMovement>().absoluteSpeed;
-		}
-
-		if(WindAction.windStop){
-			StartCoroutine(WindStopPlayer(8f));
-		}
+//		if(RainAction.rainSLow){
+//			StartCoroutine(RainSlowPlayer(10f));
+//		}
+//		else{
+//			tempSpeed = player.GetComponent<PlayerMovement>().absoluteSpeed;
+//		}
+//
+//		if(WindAction.windStop){
+//			StartCoroutine(WindStopPlayer(8f));
+//		}
 
 
 	}
@@ -168,17 +168,19 @@ public class ManageCoroutines : MonoBehaviour {
 //		particle.SetActive(false);
 //		BlockBehavior.displayParticle = false;
 //	}
-
-	public IEnumerator RainSlowPlayer(float s){
-		player.GetComponent<PlayerMovement>().absoluteSpeed = 2f;
-		yield return new WaitForSeconds(s);
-		player.GetComponent<PlayerMovement>().absoluteSpeed = tempSpeed;
-		RainAction.rainSLow = false;
-	}
-
-	public IEnumerator WindStopPlayer(float s){
-		player.GetComponent<PlayerMovement>().isStopped = true;
-		yield return new WaitForSeconds(s);
-		WindAction.windStop = false;
-	}
+//
+//	public IEnumerator RainSlowPlayer(float s){
+//		player.GetComponent<PlayerMovement>().absoluteSpeed = 2f;
+//		player.transform.GetChild(0).gameObject.SetActive(true);
+//		yield return new WaitForSeconds(s);
+//		player.transform.GetChild(0).gameObject.SetActive(false);
+//		player.GetComponent<PlayerMovement>().absoluteSpeed = tempSpeed;
+//		RainAction.rainSLow = false;
+//	}
+//
+//	public IEnumerator WindStopPlayer(float s){
+//		player.GetComponent<PlayerMovement>().isStopped = true;
+//		yield return new WaitForSeconds(s);
+//		WindAction.windStop = false;
+//	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transition : MonoBehaviour {
+public class TransitionPlay : MonoBehaviour {
 
 	public GameObject player;
 

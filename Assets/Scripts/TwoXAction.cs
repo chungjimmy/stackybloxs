@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TwoXAction : MonoBehaviour {
 
+	public GameObject indicator;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +16,7 @@ public class TwoXAction : MonoBehaviour {
 	}
 
 	public void Effect(){
+		indicator.SetActive(true);
 		gameObject.SetActive(false);
 	}
 }

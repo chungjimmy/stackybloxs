@@ -15,7 +15,7 @@ public class PlayerAction : MonoBehaviour {
     /// <summary>
     /// the cooldown in between taps to create blocks
     /// </summary>
-    public float fireRate = 1.0f;
+    public float fireRate = 1.2f;
 
     /// <summary>
     /// the time when the user can create another block

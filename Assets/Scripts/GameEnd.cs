@@ -5,21 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameEnd : MonoBehaviour {
-	public GameObject highScoreText;
+
 	/// <summary>
 	/// player gameobject, use to disable player when game is over
 	/// </summary>
 	public GameObject player;
-
-	/// <summary>
-	/// gameover text gameobject, use to disable gameover text
-	/// </summary>
-	public GameObject gameOver;
-
-    /// <summary>
-    /// leaderboard button shown on gameover
-    /// </summary>
-    public GameObject leaderboard;
 
 	public GameObject transition2;
 

@@ -8,6 +8,8 @@ public class ThunderAction : MonoBehaviour {
 
 	private GameObject manager;
 
+	public GameObject flash;
+
 	// Use this for initialization
 	void Start () {
 		manager = GameObject.FindGameObjectWithTag("Manager");
@@ -19,6 +21,7 @@ public class ThunderAction : MonoBehaviour {
 	}
 
 	public void Effect(){
+		flash.SetActive(true);
 		blocks = GameObject.FindGameObjectsWithTag("Block");
 		foreach (GameObject block in blocks){
 			Destroy(block.gameObject);

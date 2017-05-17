@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WindAction : MonoBehaviour {
 
-	GameObject player;
+	public GameObject player;
 
 	public static bool windStop;
 	// Use this for initialization
@@ -18,7 +18,7 @@ public class WindAction : MonoBehaviour {
 	}
 
 	public void Effect(){
-		windStop = true;
+		player.transform.GetChild(1).gameObject.SetActive(true);
 		gameObject.SetActive(false);
 	}
 }

@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public bool isStopped = false;
 
+	public bool isStoppedByWind = false;
+
     /// <summary>
     /// the right border of the game screen
     /// </summary>
@@ -144,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
             speed = absoluteSpeed;
         }
 
-        if (!isStopped)
+		if ((!isStopped) && (!isStoppedByWind))
         {
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
@@ -172,9 +174,7 @@ public class PlayerMovement : MonoBehaviour
         isStopped = true;
 		renderer.sprite = cloudPlayerDrop;
         yield return new WaitForSeconds(s);
-		if(WindAction.windStop == false){
-        	isStopped = false;
-		}
+		isStopped = false;
 		if(!(Tutorial.INTUTORIAL)){
 			COLOR = Random.Range(0, 7);
 			switch (COLOR)
