@@ -93,7 +93,7 @@ public class BlockBehavior : MonoBehaviour {
 		{
 			Debug.Log("OVER HERE: bottom");
 			Combo.resetCombo();
-			manager.GetComponent<GameEnd> ().End ();
+			manager.GetComponent<GameEnd> ().End (.2f);
 			Destroy(this.gameObject);
 		}
 	}
@@ -105,7 +105,7 @@ public class BlockBehavior : MonoBehaviour {
 				Debug.Log("OVER HERE:peek BLOCK");
 				Debug.Log(this.gameObject.GetComponent<SpriteRenderer>().sprite);
 				Debug.Log( manager.gameObject.GetComponent<BlockStack>().PeekBlock().gameObject.GetComponent<SpriteRenderer>().sprite);
-				manager.GetComponent<GameEnd>().End();
+				manager.GetComponent<GameEnd>().End(.2f);
 			}
 			else if(block.gameObject.tag == "Block"){
 				float distance = calculateDistance(block.gameObject);
@@ -177,7 +177,7 @@ public class BlockBehavior : MonoBehaviour {
 					Debug.Log("OVER HERE:not OK");
 					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 					Debug.Log(distance + " > " + notOk_distance);
-					manager.GetComponent<GameEnd>().End();
+					manager.GetComponent<GameEnd>().End(1f);
 				}
 			}
 			else if(block.gameObject.tag == "Platform"){
@@ -187,7 +187,7 @@ public class BlockBehavior : MonoBehaviour {
 					this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 					Debug.Log(platformDistance + " > " + "1.4");
 					Debug.Log("OVER HERE:platform no no");
-					manager.GetComponent<GameEnd>().End();
+					manager.GetComponent<GameEnd>().End(.2f);
 				}
 				if(!(comboReseted)){
 					Combo.resetCombo();
