@@ -71,15 +71,15 @@ public class ManageCoroutines : MonoBehaviour {
 	/// </summary>
 	void Update () {
 		if(BlockBehavior.displayPerfect){
-			StartCoroutine(DisplayPerfectText(.3f));
+			StartCoroutine(DisplayPerfectText(.6f));
 		}
 
 		if(BlockBehavior.displayGreat){
-			StartCoroutine(DisplayGreatText(.3f));
+			StartCoroutine(DisplayGreatText(.6f));
 		}
 
 		if(BlockBehavior.displayCombo){
-			StartCoroutine(DisplayCombo(.3f));
+			StartCoroutine(DisplayCombo(.6f));
 		}
 		//animation for when block is destroyed
 		if(BlockBehavior.displayParticle){

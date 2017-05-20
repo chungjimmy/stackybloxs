@@ -40,11 +40,6 @@ public class GameEnd : MonoBehaviour {
 	/// </summary>
 	private int scoreTracker = 0;
 
-	private float delayGameOver;
-
-	void Start(){
-		delayGameOver = 0;
-	}
 	/// <summary>
 	/// a 2d trigger, see if a block has enter LoseLine
 	/// </summary>
@@ -83,12 +78,8 @@ public class GameEnd : MonoBehaviour {
 		if (enter == true) {
 			delay += Time.deltaTime;
 			if (delay > 1.3f) {
-				if (exit == false && scoreTracker == CurrentScore.currentScore) {
-					delayGameOver += Time.deltaTime;
-                    player.SetActive(false);
-					if(delayGameOver > 2){
-						SceneManager.LoadScene("EndMenu");
-					}
+				if (exit == false && scoreTracker == CurrentScore.currentScore) {               
+					End(.2f);
 				}
 				delay = 1f;
 				enter = false;
@@ -104,20 +95,11 @@ public class GameEnd : MonoBehaviour {
 	}
 	//used in BlockBehavior when checking for bottom and platform
 	public void End(float s){
-//		player.SetActive(false);
 		StartCoroutine(DelayEnding(s));
-//		SceneManager.LoadScene("EndMenu");
-//		transition2.SetActive(true);
-//		player.SetActive(false);
-//		gameOver.SetActive(true);
-//        leaderboard.SetActive(true);
-//		highScoreText.SetActive(true);
-//		SaveFile.saveScore.Save();
-//		SaveFile.saveScore.load();
-//		over = true;
 	}
 
 	IEnumerator DelayEnding(float s){
+		player.SetActive(false);
 		yield return new WaitForSeconds(s);
 		SceneManager.LoadScene("EndMenu");
 	}

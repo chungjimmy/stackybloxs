@@ -8,6 +8,10 @@ public class Transition2 : MonoBehaviour {
 
 	public GameObject highScoreText;
 
+	public GameObject highScoreTextText;
+
+	public GameObject currentScore;
+
 	public float delay;
 
 	// Use this for initialization
@@ -23,7 +27,9 @@ public class Transition2 : MonoBehaviour {
 		delay += Time.deltaTime;
 		if(delay > 1.3f){
 			home.SetActive(true);
+			currentScore.SetActive(true);
 			highScoreText.SetActive(true);
+			highScoreTextText.SetActive(true);
 		}
 	}
 }

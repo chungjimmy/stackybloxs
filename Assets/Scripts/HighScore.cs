@@ -24,6 +24,6 @@ public class HighScore : MonoBehaviour {
 	}
 
 	void Update(){
-		score.text = "High Score: " + highScore;
+		score.text = "" + highScore;
 	}
 }

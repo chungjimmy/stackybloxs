@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CurrentScore : MonoBehaviour {
     /// <summary>
@@ -26,7 +27,11 @@ public class CurrentScore : MonoBehaviour {
 	}
 
 	void Start(){
-		currentScore = 0;
+		Scene currentScene = SceneManager.GetActiveScene();
+		string sceneName = currentScene.name;
+		if(sceneName == "StackyBlox"){
+			currentScore = 0;
+		}
 	}
 	// Update is called once per frame
     /// <summary>
